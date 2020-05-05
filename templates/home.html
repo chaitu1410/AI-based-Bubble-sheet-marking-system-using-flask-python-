@@ -1,0 +1,88 @@
+<html>
+<head>
+  <title>Dashboard</title>
+</head>
+<body>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+     header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+input[type=text],[type=file],[type=date],[type=submit]{
+  width: 30%;
+  padding: 12px 12px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom:  solid green;
+  margin-top: 55px;
+  margin-left: 33%;
+  font-size: 20px;
+  margin-bottom: 0x;
+}
+input[type=text]:focus {
+  background-color: lightblue;
+}
+
+</style>
+<script>
+$(document).ready(function(){
+    var maxField = 6; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var x = 2;
+   var fieldHTML = '<div><input type="text" name="k[]" value="" placeholder="Enter Answer of Q.'+x+'" /><a href="javascript:void(0);" class="remove_button"><img src="remove2.png" width="42" height="42"/></a></div>'; //New input field html
+   //Initial field counter is 1
+
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){
+            fieldHTML = '<div><input type="text" name="k[]" value="" required placeholder="Enter Answer of Q.'+x+'" /><a href="javascript:void(0);" class="remove_button"><img src="remove2.png" width="42" height="42"/></a></div>';
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+    });
+
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+</script>
+
+<header>
+    <h2>Upload Test</h2>
+</header>
+<div class="center">
+<form class="" method="POST" enctype="multipart/form-data">
+<input type='text' name='testname' placeholder="Enter Test name" required>
+<input type='file' name='file[]' multiple='' required>
+<div class="field_wrapper">
+<div style="margin-top:20px;">
+<center> <h2>ANSWER KEY</h2> </center>
+<input type="text" name="k1" value="" placeholder="Enter Answer of Q1" required/>
+<input type="text" name="k2" value="" placeholder="Enter Answer of Q2" required/>
+<input type="text" name="k3" value="" placeholder="Enter Answer of Q3" required/>
+<input type="text" name="k4" value="" placeholder="Enter Answer of Q4" required/>
+<input type="text" name="k5" value="" placeholder="Enter Answer of Q5" required/>
+ <!-- <a href="javascript:void(0);" class="add_button" title="Add field"><img src="download.png" width="140" height="100"/></a> -->
+ </div>
+ </div>
+  <input type='submit' value='upload' class="btn btn-primary">
+ </form>
+</div>
+</body>
+</html>

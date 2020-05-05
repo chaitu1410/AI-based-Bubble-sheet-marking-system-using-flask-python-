@@ -1,0 +1,8 @@
+flask
+shutil
+flask-wtf
+imutils
+opencv-python
+pillow
+matplotlib
+numpy
